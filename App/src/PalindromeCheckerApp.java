@@ -1,42 +1,45 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
-import java.util.Scanner;
-
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // Define the input string to validate
+        String input = "civic";
 
-        System.out.println("--- Use Case 5: Stack Based Palindrome Checker ---");
-        System.out.print("Enter a string to check: ");
-        String input = scanner.nextLine();
+        // Create a Queue to store characters in FIFO order
+        Queue<Character> queue = new LinkedList<>();
 
-        // Remove non-alphanumeric characters and convert to lowercase for accurate checking
-        String cleanedInput = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-
+        // Create a Stack to store characters in LIFO order
         Stack<Character> stack = new Stack<>();
 
-        // 1. Push characters into stack
-        for (char c : cleanedInput.toCharArray()) {
+        // Insert each character into both queue and stack
+        for (char c : input.toCharArray()) {
+            queue.add(c);
             stack.push(c);
         }
 
-        // 2. Pop and compare
-        StringBuilder reversedInput = new StringBuilder();
-        while (!stack.isEmpty()) {
-            reversedInput.append(stack.pop());
+        // Flag to track palindrome status
+        boolean isPalindrome = true;
+
+        // Compare characters until the queue becomes empty
+        while (!queue.isEmpty()) {
+            char fromQueue = queue.remove(); // First In
+            char fromStack = stack.pop();    // Last In (effectively the end)
+
+            if (fromQueue != fromStack) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        // 3. Print result
-        System.out.println("Original (cleaned): " + cleanedInput);
-        System.out.println("Reversed: " + reversedInput.toString());
-
-        if (cleanedInput.equals(reversedInput.toString())) {
-            System.out.println("Result: The string IS a palindrome.");
+        // Display results
+        System.out.println("Input String: " + input);
+        if (isPalindrome) {
+            System.out.println("Result: Success! The string is a palindrome.");
         } else {
-            System.out.println("Result: The string is NOT a palindrome.");
+            System.out.println("Result: Fail. The string is not a palindrome.");
         }
-
-        scanner.close();
     }
 }
