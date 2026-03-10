@@ -1,9 +1,9 @@
-1. Conversion: The input string is converted into a Singly Linked List where each node contains one character.
+1. Base Case 1: If the string length is 0 or 1, it is a palindrome (Exit recursion).
 
-2. Midpoint Detection: Using a "Slow and Fast Pointer" technique to find the middle of the list.
+2. Recursive Step: Compare the character at index 0 with the character at index length - 1.
 
-3. Reversal: The second half of the linked list is reversed in-place.
+3. Mismatch: If they don't match, return false immediately.
 
-4. Comparison: The first half and the reversed second half are compared node by node.
+4. Match: If they match, call the function again with a substring that excludes the first and last characters.
 
-Result: If all nodes match, the string is a palindrome.
+Completion: The recursion continues until a base case is reached or a mismatch is found.
