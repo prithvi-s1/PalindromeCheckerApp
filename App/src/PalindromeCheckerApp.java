@@ -1,58 +1,38 @@
 import java.util.*;
 
-interface PalindromeStrategy {
-    boolean isValid(String input);
-}
+public class PalindromeCheckerApp {
 
-class StackStrategy implements PalindromeStrategy {
-    @Override
-    public boolean isValid(String input) {
+    public static void main(String[] args) {
+        String testInput = "A man a plan a canal Panama".repeat(1000);
+        String cleanInput = testInput.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        long startStack = System.nanoTime();
+        checkWithStack(cleanInput);
+        long endStack = System.nanoTime();
+
+        long startTwoPointer = System.nanoTime();
+        checkWithTwoPointer(cleanInput);
+        long endTwoPointer = System.nanoTime();
+
+        System.out.println("--- Benchmarking Results (Nanoseconds) ---");
+        System.out.println("Stack Approach:       " + (endStack - startStack) + " ns");
+        System.out.println("Two-Pointer Approach: " + (endTwoPointer - startTwoPointer) + " ns");
+    }
+
+    private static boolean checkWithStack(String input) {
         Stack<Character> stack = new Stack<>();
         for (char c : input.toCharArray()) stack.push(c);
-
-        StringBuilder reversed = new StringBuilder();
-        while (!stack.isEmpty()) reversed.append(stack.pop());
-
-        return input.equals(reversed.toString());
-    }
-}
-
-class DequeStrategy implements PalindromeStrategy {
-    @Override
-    public boolean isValid(String input) {
-        Deque<Character> deque = new ArrayDeque<>();
-        for (char c : input.toCharArray()) deque.addLast(c);
-
-        while (deque.size() > 1) {
-            if (deque.removeFirst() != deque.removeLast()) return false;
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) return false;
         }
         return true;
     }
-}
 
-class PalindromeContext {
-    private PalindromeStrategy strategy;
-
-    public void setStrategy(PalindromeStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public boolean validate(String input) {
-        if (strategy == null) throw new IllegalStateException("Strategy not set");
-        String clean = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        return strategy.isValid(clean);
-    }
-}
-
-public class PalindromeCheckerApp {
-    public static void main(String[] args) {
-        PalindromeContext context = new PalindromeContext();
-        String test = "Was it a car or a cat I saw";
-
-        context.setStrategy(new StackStrategy());
-        System.out.println("Using Stack Strategy: " + context.validate(test));
-
-        context.setStrategy(new DequeStrategy());
-        System.out.println("Using Deque Strategy: " + context.validate(test));
+    private static boolean checkWithTwoPointer(String input) {
+        int left = 0, right = input.length() - 1;
+        while (left < right) {
+            if (input.charAt(left++) != input.charAt(right--)) return false;
+        }
+        return true;
     }
 }
