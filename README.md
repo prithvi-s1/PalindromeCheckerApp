@@ -1,13 +1,9 @@
-Initialization: An input string (e.g., "civic") is defined.
+1. Conversion: The input string is converted into a Singly Linked List where each node contains one character.
 
-Storage: Every character of the string is added to both a Queue and a Stack.
+2. Midpoint Detection: Using a "Slow and Fast Pointer" technique to find the middle of the list.
 
-The "Fairness Check":
+3. Reversal: The second half of the linked list is reversed in-place.
 
-The Queue releases characters from the start of the string.
+4. Comparison: The first half and the reversed second half are compared node by node.
 
-The Stack releases characters from the end of the string.
-
-Comparison: The characters are compared pair by pair.
-
-Validation: If every pair matches until the structures are empty, the input is a palindrome.ts
+Result: If all nodes match, the string is a palindrome.
