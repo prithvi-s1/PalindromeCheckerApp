@@ -1,21 +1,17 @@
-public class PalindromeCheckerApp {
+class PalindromeService {
 
-    public static void main(String[] args) {
-        String input = "A man, a plan, a canal: Panama";
+    public boolean checkPalindrome(String input) {
+        if (input == null) return false;
 
-        String cleanInput = normalize(input);
-        boolean result = checkPalindrome(cleanInput);
-
-        System.out.println("Original: " + input);
-        System.out.println("Normalized: " + cleanInput);
-        System.out.println("Is Palindrome: " + result);
+        String clean = normalize(input);
+        return validate(clean);
     }
 
-    private static String normalize(String str) {
+    private String normalize(String str) {
         return str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
     }
 
-    private static boolean checkPalindrome(String str) {
+    private boolean validate(String str) {
         int left = 0;
         int right = str.length() - 1;
 
@@ -27,5 +23,18 @@ public class PalindromeCheckerApp {
             right--;
         }
         return true;
+    }
+}
+
+public class PalindromeCheckerApp {
+
+    public static void main(String[] args) {
+        PalindromeService service = new PalindromeService();
+
+        String testString = "No 'x' in Nixon";
+        boolean isPalindrome = service.checkPalindrome(testString);
+
+        System.out.println("Input: " + testString);
+        System.out.println("Is Palindrome: " + isPalindrome);
     }
 }
