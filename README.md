@@ -1,7 +1,7 @@
-Normalization: The input string is processed using a Regular Expression (Regex) to remove all non-alphanumeric characters.
+Service Definition: A PalindromeService class is created to house the validation logic.
 
-Case Flattening: The entire string is converted to lowercase to treat 'A' and 'a' as identical.
+Encapsulation: The specific algorithm (e.g., Two-Pointer or Stack-based) is kept as a private implementation detail or a public method.
 
-Application: The cleaned string is passed to any of the previous logic models (Stack, Deque, or Recursion).
+API Exposure: The class exposes a public method checkPalindrome(String input) which returns a boolean result.
 
-Result: The application confirms if the underlying message is a palindrome regardless of how it was typed.
+Client Interaction: The main class (the Client) instantiates the service and calls its methods without needing to know how the check is performed.
