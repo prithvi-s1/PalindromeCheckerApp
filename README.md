@@ -1,7 +1,11 @@
-Service Definition: A PalindromeService class is created to house the validation logic.
+Define Interface: Create a PalindromeStrategy with a single method isValid(String input).
 
-Encapsulation: The specific algorithm (e.g., Two-Pointer or Stack-based) is kept as a private implementation detail or a public method.
+Implement Concrete Strategies:
 
-API Exposure: The class exposes a public method checkPalindrome(String input) which returns a boolean result.
+StackStrategy: Uses the LIFO approach.
 
-Client Interaction: The main class (the Client) instantiates the service and calls its methods without needing to know how the check is performed.
+DequeStrategy: Uses the front-to-back comparison approach.
+
+Context Class: Create a PalindromeValidator that holds a reference to a strategy.
+
+Runtime Injection: The user or system chooses which "brain" (strategy) to use at the moment of execution.
