@@ -1,23 +1,31 @@
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        String input = "deified";
+        String input = "A man, a plan, a canal: Panama";
 
-        boolean result = isPalindrome(input);
+        String cleanInput = normalize(input);
+        boolean result = checkPalindrome(cleanInput);
 
-        System.out.println("Input: " + input);
+        System.out.println("Original: " + input);
+        System.out.println("Normalized: " + cleanInput);
         System.out.println("Is Palindrome: " + result);
     }
 
-    public static boolean isPalindrome(String str) {
-        if (str.length() <= 1) {
-            return true;
-        }
+    private static String normalize(String str) {
+        return str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+    }
 
-        if (str.charAt(0) != str.charAt(str.length() - 1)) {
-            return false;
-        }
+    private static boolean checkPalindrome(String str) {
+        int left = 0;
+        int right = str.length() - 1;
 
-        return isPalindrome(str.substring(1, str.length() - 1));
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
 }
