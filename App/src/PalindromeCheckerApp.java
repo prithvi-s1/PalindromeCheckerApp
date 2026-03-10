@@ -1,45 +1,30 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        // Define the input string to validate
-        String input = "civic";
+        String input = "refer";
 
-        // Create a Queue to store characters in FIFO order
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Create a Stack to store characters in LIFO order
-        Stack<Character> stack = new Stack<>();
-
-        // Insert each character into both queue and stack
         for (char c : input.toCharArray()) {
-            queue.add(c);
-            stack.push(c);
+            deque.addLast(c);
         }
 
-        // Flag to track palindrome status
         boolean isPalindrome = true;
 
-        // Compare characters until the queue becomes empty
-        while (!queue.isEmpty()) {
-            char fromQueue = queue.remove(); // First In
-            char fromStack = stack.pop();    // Last In (effectively the end)
+        while (deque.size() > 1) {
+            char first = deque.removeFirst();
+            char last = deque.removeLast();
 
-            if (fromQueue != fromStack) {
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Display results
-        System.out.println("Input String: " + input);
-        if (isPalindrome) {
-            System.out.println("Result: Success! The string is a palindrome.");
-        } else {
-            System.out.println("Result: Fail. The string is not a palindrome.");
-        }
+        System.out.println("Input: " + input);
+        System.out.println("Palindrome: " + isPalindrome);
     }
 }

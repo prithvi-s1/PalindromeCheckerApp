@@ -1,7 +1,13 @@
-# PalindromeCheckerApp
-1. Define the input string to validate
-2. Create a Queue to store characters in FIFO order
-3. Create a Stack to store characters in LIFO order
-4. Insert each character into both queue and stack
-5. Compare characters until the queue becomes empty
-6. Display results
+Initialization: An input string (e.g., "civic") is defined.
+
+Storage: Every character of the string is added to both a Queue and a Stack.
+
+The "Fairness Check":
+
+The Queue releases characters from the start of the string.
+
+The Stack releases characters from the end of the string.
+
+Comparison: The characters are compared pair by pair.
+
+Validation: If every pair matches until the structures are empty, the input is a palindrome.ts
