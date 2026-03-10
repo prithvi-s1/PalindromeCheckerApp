@@ -1,11 +1,7 @@
-Define Interface: Create a PalindromeStrategy with a single method isValid(String input).
+Selection: Choose multiple strategies to test (e.g., Stack-based vs. Two-Pointer).
 
-Implement Concrete Strategies:
+Timing: Use System.nanoTime() to capture the exact moment before and after the execution.
 
-StackStrategy: Uses the LIFO approach.
+Calculation: Subtract the start time from the end time to determine the total duration.
 
-DequeStrategy: Uses the front-to-back comparison approach.
-
-Context Class: Create a PalindromeValidator that holds a reference to a strategy.
-
-Runtime Injection: The user or system chooses which "brain" (strategy) to use at the moment of execution.
+Reporting: Output the results in a comparative format to identify the most efficient approach.
